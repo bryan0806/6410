@@ -1,0 +1,1 @@
+cmd_/mnt/hgfs/share/6410/ledko/led.ko := /usr/local/arm/4.3.1-eabi-armv6/usr/bin/arm-linux-ld -EL -r   --build-id -o /mnt/hgfs/share/6410/ledko/led.ko /mnt/hgfs/share/6410/ledko/led.o /mnt/hgfs/share/6410/ledko/led.mod.o
