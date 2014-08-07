@@ -29,21 +29,35 @@
 #define GPNCON  (*(volatile unsigned *)0x7F008830)
 #define GPNDAT  (*(volatile unsigned *)0x7F008834)
 #define GPNPUD  (*(volatile unsigned *)0x7F008838)
-
+#include <asm/io.h>
 
 int do_menu ( cmd_tbl_t *cmdtp, int flag, int argc, char *argv[])
 {
               /* printf ("Usage:\n%s\n", cmdtp->usage);*/
+	GPNCON &= ~ (0xf <<28);
+	GPNCON |= (1 << 28)|(1<<30);
+	
+        
+
+
         int i;
         for(i=0;i<10;i++)
         {
                 
                 printf("====== LED OFF =====\n");
-                              
+	
+			GPNDAT &= ~ ((1 <<14));
+			GPNDAT |=  ((1<<15));
+			
+			udelay(10000000);                              
  
                 
                 printf("====== LED ON ======\n");
-                
+		
+			GPNDAT |=  ((1 <<14));
+			GPNDAT &= ~((1<<15));
+		
+                	udelay(10000000);
         }
 
 		return 0;
